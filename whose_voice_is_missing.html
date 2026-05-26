@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whose Voice is Missing? | MQBS2010 Training Module</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1a2540;--navy2:#253060;
+  --maroon:#8b1a2e;--maroon-l:#f8eaed;--maroon-b:#d44a63;
+  --cream:#faf8f5;--warm:#f3f0ea;--warm2:#e4dfd5;
+  --teal:#0e7a5c;--teal-l:#e2f4ee;--teal-d:#075e44;--teal-b:#5DCAA5;
+  --red:#c0392b;--red-l:#fdecea;
+  --gold:#b07d1a;--gold-l:#fef9ec;--gold-b:#e5c76b;
+  --text:#1a1f2e;--text2:#4a5168;--text3:#8a90a8;
+  --surface:#ffffff;--border:#e0ddd6;
+  --shadow:0 2px 12px rgba(26,37,64,0.09);
+  --shadow2:0 4px 24px rgba(26,37,64,0.13);
+  --r:12px;--r2:8px;--r3:99px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;line-height:1.6}
+.page{display:none}
+.page.active{display:block;animation:fadeUp 0.4s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* NAV */
+nav{background:var(--navy);padding:0 1.5rem;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.nav-icon{width:28px;height:28px;border-radius:6px;background:var(--maroon);display:flex;align-items:center;justify-content:center}
+.nav-icon svg{width:16px;height:16px}
+.nav-title{font-size:14px;font-weight:600;color:#fff;letter-spacing:-0.01em}
+.nav-unit{font-size:11px;font-weight:500;color:rgba(255,255,255,0.45);background:rgba(255,255,255,0.08);padding:4px 10px;border-radius:var(--r3);border:1px solid rgba(255,255,255,0.12)}
+.nav-tabs{display:flex;gap:4px}
+.nav-tab{font-size:13px;font-weight:500;color:rgba(255,255,255,0.55);background:none;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;transition:all 0.15s}
+.nav-tab:hover{color:#fff;background:rgba(255,255,255,0.08)}
+.nav-tab.active-tab{color:#fff;background:rgba(255,255,255,0.13)}
+
+.container{max-width:760px;margin:0 auto;padding:0 1.25rem}
+
+/* HOME */
+.hero{padding:3.5rem 0 2rem}
+.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--maroon);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.hero-eyebrow::before{content:'';width:20px;height:2px;background:var(--maroon);display:inline-block}
+h1.hero-h{font-family:'Fraunces',serif;font-size:clamp(32px,5vw,52px);font-weight:300;line-height:1.1;color:var(--navy);margin-bottom:1rem}
+h1.hero-h em{font-style:italic;color:var(--maroon)}
+.hero-sub{font-size:15px;color:var(--text2);line-height:1.8;max-width:540px;margin-bottom:2rem}
+.illo-banner{background:var(--navy);border-radius:var(--r);padding:2rem 1.5rem;margin-bottom:2rem;overflow:hidden;position:relative}
+.illo-banner::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:rgba(139,26,46,0.15)}
+.illo-row{display:flex;align-items:flex-end;gap:1.25rem;flex-wrap:wrap}
+.illo-person{display:flex;flex-direction:column;align-items:center;gap:6px}
+.illo-bub{font-size:11px;line-height:1.4;border-radius:8px 8px 8px 2px;padding:5px 9px;max-width:110px;text-align:center}
+.bub-active{background:rgba(255,255,255,0.15);color:#fff}
+.bub-silent{background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.3);font-style:italic;border:1px dashed rgba(255,255,255,0.15)}
+.illo-name{font-size:10px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase}
+.illo-caption{color:rgba(255,255,255,0.4);font-size:12px;margin-top:1.25rem;font-style:italic}
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:10px;margin-bottom:1.75rem}
+.meta-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1rem;box-shadow:var(--shadow)}
+.meta-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text3);margin-bottom:4px}
+.meta-val{font-size:13px;font-weight:500;color:var(--text);line-height:1.5}
+.outcome-card{background:var(--teal-l);border:1px solid var(--teal-b);border-left:4px solid var(--teal);border-radius:var(--r);padding:1.1rem 1.25rem;margin-bottom:1.75rem}
+.outcome-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--teal-d);margin-bottom:5px}
+.outcome-card p{font-size:14px;color:var(--teal-d);line-height:1.7;font-style:italic}
+.tag-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:2rem}
+.tag{font-size:12px;font-weight:500;padding:4px 12px;border-radius:var(--r3);border:1px solid var(--border);color:var(--text2);background:var(--surface)}
+.hiw-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1.75rem;box-shadow:var(--shadow)}
+.hiw-card h3{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:1rem}
+.hiw-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:1.25rem}
+.hiw-step{background:var(--cream);border:1px solid var(--border);border-radius:var(--r2);padding:0.85rem}
+.hiw-step-n{width:22px;height:22px;border-radius:50%;background:var(--navy);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+.hiw-step p{font-size:12.5px;color:var(--text2);line-height:1.55}
+.smeac-explain{background:var(--warm);border-radius:var(--r2);padding:0.9rem 1rem}
+.smeac-explain p{font-size:12px;color:var(--text2);margin-bottom:4px}
+.smeac-explain strong{color:var(--navy)}
+.team-bar{background:var(--warm);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.25rem;margin-bottom:2rem}
+.team-bar-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text3);margin-bottom:0.6rem}
+.members{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r3);padding:5px 12px 5px 5px;font-size:13px;color:var(--text)}
+.chip-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;padding-bottom:3rem}
+
+/* BUTTONS */
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;padding:0.75rem 1.5rem;border-radius:var(--r2);border:none;cursor:pointer;transition:background 0.15s,transform 0.1s}
+.btn-primary:hover{background:var(--navy2);transform:translateY(-1px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:var(--surface);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:500;padding:0.75rem 1.5rem;border-radius:var(--r2);border:1px solid var(--border);cursor:pointer;transition:background 0.15s}
+.btn-ghost:hover{background:var(--warm)}
+
+/* ABOUT */
+.about-inner{padding:2.5rem 0}
+.about-h{font-family:'Fraunces',serif;font-size:24px;font-weight:300;color:var(--navy);margin-bottom:0.75rem}
+.about-p{font-size:14.5px;color:var(--text2);line-height:1.8;margin-bottom:1rem}
+.concept-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:1rem 0 2rem}
+.concept-card{background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--navy);border-radius:var(--r);padding:1rem;box-shadow:var(--shadow)}
+.concept-card h4{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:5px}
+.concept-card p{font-size:13px;color:var(--text2);line-height:1.6}
+.facilitator-box{background:var(--warm);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem 1.4rem;margin-bottom:1.75rem}
+.facilitator-box h4{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:0.75rem}
+.fac-row{display:flex;gap:10px;margin-bottom:6px;align-items:flex-start}
+.fac-time{font-size:11px;font-weight:600;color:var(--maroon);background:var(--maroon-l);padding:2px 8px;border-radius:var(--r3);white-space:nowrap;margin-top:2px;flex-shrink:0}
+.fac-row p{font-size:13px;color:var(--text2);line-height:1.55}
+.debrief-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem 1.4rem;margin-bottom:1.75rem;box-shadow:var(--shadow)}
+.debrief-box h4{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:0.75rem}
+.debrief-q{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start;font-size:13.5px;color:var(--text2);line-height:1.6}
+.debrief-n{width:22px;height:22px;border-radius:50%;background:var(--navy);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.refs-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem 1.4rem;margin-bottom:2rem;box-shadow:var(--shadow)}
+.refs-box h4{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:0.75rem}
+.ref-item{font-size:12.5px;color:var(--text2);line-height:1.75;margin-bottom:0.6rem;padding-left:1.5rem;text-indent:-1.5rem}
+.ref-item a{color:var(--teal-d);text-decoration:none}
+.ref-item a:hover{text-decoration:underline}
+.refs-note{font-size:12.5px;color:var(--text3);line-height:1.7;margin-top:0.75rem;font-style:italic;border-top:1px solid var(--border);padding-top:0.75rem}
+
+/* QUIZ */
+.quiz-inner{padding:2rem 0}
+.progress-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.prog-label{font-size:13px;color:var(--text2)}
+.prog-score{font-size:12px;font-weight:600;color:var(--teal-d);background:var(--teal-l);padding:3px 10px;border-radius:var(--r3);border:1px solid var(--teal-b)}
+.prog-track{height:5px;background:var(--warm2);border-radius:var(--r3);overflow:hidden;margin-bottom:1.75rem}
+.prog-fill{height:5px;background:var(--navy);border-radius:var(--r3);transition:width 0.5s cubic-bezier(0.4,0,0.2,1)}
+.scene-card{background:var(--navy);border-radius:var(--r);overflow:hidden;margin-bottom:1.25rem}
+.scene-top{padding:0.75rem 1.1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.07)}
+.scene-badge{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:rgba(255,255,255,0.45)}
+.scene-num{font-size:11px;color:rgba(255,255,255,0.35)}
+.scene-figures{padding:1.1rem 1.25rem;display:flex;align-items:flex-end;gap:1.1rem;overflow-x:auto;min-height:100px}
+.scene-person{display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0}
+.s-bub{font-size:10.5px;line-height:1.4;border-radius:7px 7px 7px 2px;padding:5px 8px;max-width:108px;text-align:center}
+.s-active{background:rgba(255,255,255,0.15);color:#fff}
+.s-silent{background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.28);font-style:italic;border:1px dashed rgba(255,255,255,0.13)}
+.s-excluded{background:rgba(139,26,46,0.25);color:rgba(255,180,160,0.9);border:1px solid rgba(139,26,46,0.35)}
+.s-name{font-size:9.5px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:rgba(255,255,255,0.45)}
+.smeac-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:1.25rem;box-shadow:var(--shadow)}
+.smeac-head{background:var(--navy);color:#fff;padding:0.6rem 1rem;font-size:10px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.smeac-head span{opacity:0.4;font-weight:400}
+.smeac-row-item{display:grid;grid-template-columns:120px 1fr;border-bottom:1px solid var(--border)}
+.smeac-row-item:last-child{border-bottom:none}
+.smeac-k{padding:0.65rem 0.85rem;font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--navy);background:var(--warm);display:flex;align-items:flex-start;gap:5px;border-right:1px solid var(--border)}
+.smeac-k .sl{color:var(--maroon);font-size:12px;font-weight:700}
+.smeac-v{padding:0.65rem 0.9rem;font-size:13.5px;line-height:1.75;color:var(--text)}
+.q-text{font-size:16px;font-weight:600;line-height:1.5;color:var(--text);margin-bottom:1rem}
+.opts{display:grid;gap:8px;margin-bottom:1rem}
+.opt{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r2);padding:0.85rem 1rem;text-align:left;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;color:var(--text);line-height:1.55;display:flex;gap:10px;align-items:flex-start;transition:border-color 0.15s,background 0.15s,transform 0.1s;width:100%}
+.opt:hover:not(:disabled){border-color:var(--navy);background:var(--warm);transform:translateX(2px)}
+.opt:disabled{cursor:default}
+.opt.correct{background:var(--teal-l);border-color:var(--teal);color:var(--teal-d)}
+.opt.wrong{background:var(--red-l);border-color:var(--red);color:var(--red)}
+.opt-l{font-size:11px;font-weight:700;color:var(--text3);min-width:18px;margin-top:2px;letter-spacing:0.04em}
+.opt.correct .opt-l{color:var(--teal)}
+.opt.wrong .opt-l{color:var(--red)}
+.fb-card{border-radius:var(--r);margin-bottom:1.25rem;animation:fadeUp 0.3s ease both;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow)}
+.fb-header{padding:0.65rem 1rem;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.fb-ok-h{background:var(--teal);color:#fff}
+.fb-no-h{background:var(--red);color:#fff}
+.fb-body{padding:1rem;background:var(--surface)}
+.fb-row{margin-bottom:0.85rem}
+.fb-row:last-child{margin-bottom:0}
+.fb-row-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text3);margin-bottom:3px}
+.fb-row p{font-size:13.5px;color:var(--text2);line-height:1.7}
+.practice-prompt{background:var(--gold-l);border:1px solid var(--gold-b);border-radius:var(--r2);padding:0.85rem 1rem;margin-top:0.85rem}
+.practice-prompt-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--gold);margin-bottom:5px}
+.practice-prompt p{font-size:13.5px;color:#5a4010;line-height:1.65;font-style:italic}
+.next-btn{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;padding:0.72rem 1.4rem;border-radius:var(--r2);border:none;cursor:pointer;transition:background 0.15s,transform 0.1s}
+.next-btn:hover{background:var(--navy2);transform:translateY(-1px)}
+
+/* PRACTICE PAGE */
+.practice-inner{padding:2rem 0 3rem}
+.practice-eyebrow{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--maroon);margin-bottom:0.75rem;display:flex;align-items:center;gap:8px}
+.practice-eyebrow::before{content:'';width:16px;height:2px;background:var(--maroon);display:inline-block}
+.practice-h{font-family:'Fraunces',serif;font-size:28px;font-weight:300;color:var(--navy);margin-bottom:0.6rem}
+.practice-sub{font-size:15px;color:var(--text2);line-height:1.75;margin-bottom:1.75rem;max-width:540px}
+.practice-scenario{background:var(--navy);border-radius:var(--r);padding:1.25rem 1.4rem;margin-bottom:1.5rem}
+.practice-scenario p{font-size:14px;color:rgba(255,255,255,0.85);line-height:1.75}
+.practice-scenario strong{color:#fff}
+.practice-prompt-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem 1.4rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+.practice-prompt-box label{display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:0.75rem}
+.practice-textarea{width:100%;min-height:100px;border:1.5px solid var(--border);border-radius:var(--r2);padding:0.85rem;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;color:var(--text);line-height:1.65;resize:vertical;transition:border-color 0.15s;background:var(--cream)}
+.practice-textarea:focus{outline:none;border-color:var(--navy)}
+.practice-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:1rem}
+.model-reveal{display:none;animation:fadeUp 0.35s ease both}
+.model-reveal.shown{display:block}
+.model-box{background:var(--teal-l);border:1px solid var(--teal-b);border-left:4px solid var(--teal);border-radius:var(--r);padding:1.1rem 1.25rem;margin-top:1.25rem}
+.model-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--teal-d);margin-bottom:6px}
+.model-box p{font-size:14.5px;color:var(--teal-d);line-height:1.75;font-style:italic}
+.model-note{font-size:12.5px;color:var(--teal);margin-top:0.6rem;font-style:normal}
+.practice-next-row{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.practice-note{font-size:13px;color:var(--text3);font-style:italic}
+
+/* RESULTS */
+.res-inner{padding:3rem 0}
+.score-hero{text-align:center;margin-bottom:2.5rem}
+.score-ring{width:108px;height:108px;border-radius:50%;border:3px solid var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:1rem auto}
+.score-n{font-family:'Fraunces',serif;font-size:32px;font-weight:300;color:var(--navy)}
+.score-s{font-size:11px;color:var(--text3)}
+.score-msg{font-size:15px;color:var(--text2);line-height:1.7;max-width:480px;margin:0.75rem auto 0}
+.divider{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.section-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-bottom:0.75rem}
+.insight{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--navy);border-radius:var(--r2);padding:0.9rem 1rem;font-size:14px;line-height:1.7;color:var(--text);margin-bottom:8px;box-shadow:var(--shadow)}
+.try-it-box{background:var(--maroon-l);border:1px solid var(--maroon-b);border-left:4px solid var(--maroon);border-radius:var(--r);padding:1.1rem 1.25rem;margin-bottom:2rem}
+.try-it-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--maroon);margin-bottom:6px}
+.try-it-box p{font-size:14px;color:#5a0e1a;line-height:1.75}
+.checklist{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:2rem;box-shadow:var(--shadow)}
+.checklist-head{background:var(--navy);color:#fff;padding:0.65rem 1rem;font-size:11px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase}
+.check-item{display:flex;align-items:center;gap:10px;padding:0.7rem 1rem;border-bottom:1px solid var(--border);font-size:13.5px;color:var(--text);cursor:pointer;transition:background 0.12s;user-select:none}
+.check-item:last-child{border-bottom:none}
+.check-item:hover{background:var(--warm)}
+.check-box{width:18px;height:18px;border-radius:4px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.15s,border-color 0.15s}
+.check-item.checked .check-box{background:var(--teal);border-color:var(--teal)}
+.check-item.checked .check-box::after{content:'';width:5px;height:9px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg);display:block;margin-top:-2px}
+.check-item.checked span{color:var(--text2);text-decoration:line-through}
+.debrief-card{background:var(--warm);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem 1.4rem;margin-bottom:2rem}
+.debrief-card h4{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:0.75rem}
+.footer-bar{background:var(--navy);color:rgba(255,255,255,0.5);text-align:center;padding:1rem 1.5rem;font-size:12px;margin-top:2rem}
+
+/* char colours */
+.ca{color:#3C3489;font-weight:600}
+.cs{color:#085041;font-weight:600}
+.cp{color:#7a2e0e;font-weight:600}
+.cj{color:#0c447c;font-weight:600}
+.cm{color:#5c3b8a;font-weight:600}
+
+/* PRACTICE SCENARIO CARDS */
+.prac-cards{display:grid;gap:10px}
+.prac-card{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem;cursor:pointer;display:flex;align-items:flex-start;gap:1rem;transition:border-color 0.15s,background 0.15s,box-shadow 0.15s;position:relative}
+.prac-card:hover{border-color:var(--navy);background:var(--warm)}
+.prac-card.selected{border-color:var(--navy);background:var(--warm);box-shadow:0 0 0 3px rgba(26,37,64,0.1)}
+.prac-card-num{width:28px;height:28px;border-radius:50%;background:var(--warm2);color:var(--text2);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:background 0.15s,color 0.15s}
+.prac-card.selected .prac-card-num{background:var(--navy);color:#fff}
+.prac-card-body{flex:1}
+.prac-card-title{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.prac-card-desc{font-size:13px;color:var(--text2);line-height:1.6}
+.prac-card-check{width:20px;height:20px;border-radius:50%;background:var(--navy);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;opacity:0;transition:opacity 0.15s;margin-top:2px}
+.prac-card.selected .prac-card-check{opacity:1}
+
+@media(max-width:600px){
+  .smeac-row-item{grid-template-columns:90px 1fr}
+  .meta-grid{grid-template-columns:1fr 1fr}
+  h1.hero-h{font-size:30px}
+  .nav-tabs .nav-tab{padding:6px 8px;font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <div class="nav-icon">
+      <svg fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/><path d="M5 8.5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <span class="nav-title">Whose Voice is Missing?</span>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active-tab" onclick="goTo('page-home')">Home</button>
+    <button class="nav-tab" onclick="goTo('page-about')">About</button>
+    <button class="nav-tab" onclick="startQuiz()">Start Module</button>
+  </div>
+</nav>
+
+<!-- ===== HOME ===== -->
+<div class="page active" id="page-home">
+  <div class="container">
+    <div class="hero">
+      <p class="hero-eyebrow">MQBS2010 Assessment 3 Training Activity</p>
+      <h1 class="hero-h">Whose voice<br>is <em>missing?</em></h1>
+      <p class="hero-sub">An interactive scenario-based module on using inclusive communication strategies to ensure all team members' perspectives are heard during workplace problem-solving.</p>
+    </div>
+    <div class="illo-banner">
+      <div class="illo-row">
+        <div class="illo-person">
+          <div class="illo-bub bub-active">"Option A is clearly best..."</div>
+          <svg width="48" height="70" viewBox="0 0 48 70" fill="none"><circle cx="24" cy="14" r="11" fill="#7F77DD"/><rect x="10" y="27" width="28" height="33" rx="6" fill="#AFA9EC"/><rect x="3" y="29" width="8" height="20" rx="4" fill="#AFA9EC"/><rect x="37" y="29" width="8" height="20" rx="4" fill="#AFA9EC"/><rect x="11" y="57" width="8" height="11" rx="3" fill="#AFA9EC"/><rect x="29" y="57" width="8" height="11" rx="3" fill="#AFA9EC"/><circle cx="19" cy="11" r="1.8" fill="white"/><circle cx="29" cy="11" r="1.8" fill="white"/><path d="M19 18 Q24 22 29 18" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+          <span class="illo-name" style="color:#AFA9EC">Alex</span>
+        </div>
+        <div class="illo-person">
+          <div class="illo-bub bub-active">"Agreed, and also..."</div>
+          <svg width="48" height="70" viewBox="0 0 48 70" fill="none"><circle cx="24" cy="14" r="11" fill="#185FA5"/><rect x="10" y="27" width="28" height="33" rx="6" fill="#378ADD"/><rect x="3" y="29" width="8" height="20" rx="4" fill="#378ADD"/><rect x="37" y="29" width="8" height="20" rx="4" fill="#378ADD"/><rect x="11" y="57" width="8" height="11" rx="3" fill="#378ADD"/><rect x="29" y="57" width="8" height="11" rx="3" fill="#378ADD"/><circle cx="19" cy="11" r="1.8" fill="white"/><circle cx="29" cy="11" r="1.8" fill="white"/><path d="M19 18 Q24 22 29 18" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+          <span class="illo-name" style="color:#85B7EB">Jordan</span>
+        </div>
+        <div class="illo-person">
+          <div class="illo-bub bub-silent">(has not been asked)</div>
+          <svg width="48" height="70" viewBox="0 0 48 70" fill="none" opacity="0.32"><circle cx="24" cy="14" r="11" fill="#8b6655"/><rect x="10" y="27" width="28" height="33" rx="6" fill="#a07060"/><rect x="3" y="29" width="8" height="20" rx="4" fill="#a07060"/><rect x="37" y="29" width="8" height="20" rx="4" fill="#a07060"/><rect x="11" y="57" width="8" height="11" rx="3" fill="#a07060"/><rect x="29" y="57" width="8" height="11" rx="3" fill="#a07060"/><circle cx="19" cy="11" r="1.8" fill="white" opacity="0.5"/><circle cx="29" cy="11" r="1.8" fill="white" opacity="0.5"/><path d="M19 18 Q24 21 29 18" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.3"/></svg>
+          <span class="illo-name" style="color:rgba(255,255,255,0.25)">Priya</span>
+        </div>
+        <div class="illo-person">
+          <div class="illo-bub bub-active">"Building on that..."</div>
+          <svg width="48" height="70" viewBox="0 0 48 70" fill="none"><circle cx="24" cy="14" r="11" fill="#1D9E75"/><rect x="10" y="27" width="28" height="33" rx="6" fill="#5DCAA5"/><rect x="3" y="29" width="8" height="20" rx="4" fill="#5DCAA5"/><rect x="37" y="29" width="8" height="20" rx="4" fill="#5DCAA5"/><rect x="11" y="57" width="8" height="11" rx="3" fill="#5DCAA5"/><rect x="29" y="57" width="8" height="11" rx="3" fill="#5DCAA5"/><circle cx="19" cy="11" r="1.8" fill="white"/><circle cx="29" cy="11" r="1.8" fill="white"/><path d="M19 18 Q24 22 29 18" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+          <span class="illo-name" style="color:#9FE1CB">Sam</span>
+        </div>
+      </div>
+      <p class="illo-caption">Can you identify who is missing from this conversation?</p>
+    </div>
+    <div class="meta-grid">
+      <div class="meta-card"><div class="meta-label">Specific skill</div><div class="meta-val">Using inclusive communication strategies to ensure all team members' perspectives are heard during workplace problem-solving</div></div>
+      <div class="meta-card"><div class="meta-label">DEI lens</div><div class="meta-val">Fostering diverse team engagement</div></div>
+      <div class="meta-card"><div class="meta-label">Format</div><div class="meta-val">5 SMEAC scenarios, structured feedback, and a practice exercise</div></div>
+      <div class="meta-card"><div class="meta-label">Total time</div><div class="meta-val">10-15 minutes</div></div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-label">Learning outcome</div>
+      <p>Participants will practise using inclusive communication strategies to invite quieter perspectives, reduce dominant voices, and improve psychological safety during workplace problem-solving discussions.</p>
+    </div>
+    <div class="tag-row">
+      <span class="tag">Psychological safety</span>
+      <span class="tag">Intersectionality</span>
+      <span class="tag">Inclusive facilitation</span>
+      <span class="tag">Diverse team engagement</span>
+      <span class="tag">Workplace problem-solving</span>
+    </div>
+    <div class="hiw-card">
+      <h3>How this module works</h3>
+      <div class="hiw-steps">
+        <div class="hiw-step"><div class="hiw-step-n">1</div><p>Read each workplace scenario, structured using the SMEAC briefing format</p></div>
+        <div class="hiw-step"><div class="hiw-step-n">2</div><p>Choose the most inclusive response from four options</p></div>
+        <div class="hiw-step"><div class="hiw-step-n">3</div><p>Read structured feedback and practise saying the suggested phrase aloud</p></div>
+        <div class="hiw-step"><div class="hiw-step-n">4</div><p>Complete a written practice exercise, then review your results and checklist</p></div>
+      </div>
+      <div class="smeac-explain">
+        <p><strong>What is SMEAC?</strong> A structured briefing format used in professional facilitation and leadership contexts.</p>
+        <p><strong>S</strong> Situation &mdash; <strong>M</strong> Mission &mdash; <strong>E</strong> Execution &mdash; <strong>A</strong> Admin and Logistics &mdash; <strong>C</strong> Command and Signals</p>
+      </div>
+    </div>
+    <div class="team-bar">
+      <div class="team-bar-label">Training team</div>
+      <div class="members">
+        <div class="chip"><div class="chip-av" style="background:#1a2540">XZ</div>Xuanhe Zhang (Jerry) &middot; 48499641</div>
+        <div class="chip"><div class="chip-av" style="background:#8b1a2e">MM</div>Mahijanen Mahinthan &middot; 49148486</div>
+        <div class="chip"><div class="chip-av" style="background:#185FA5">PT</div>Pavithran Thushiyendra &middot; 48503460</div>
+        <div class="chip"><div class="chip-av" style="background:#0e7a5c">AT</div>Aidan Thomson &middot; 48508624</div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="btn-primary" onclick="startQuiz()">Start the module &#8594;</button>
+      <button class="btn-ghost" onclick="goTo('page-about')">Facilitator notes</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<div class="page" id="page-about">
+  <div class="container">
+    <div class="about-inner">
+      <button class="btn-ghost" style="margin-bottom:1.75rem" onclick="goTo('page-home')">&#8592; Back</button>
+      <h2 class="about-h">Why this skill matters</h2>
+      <p class="about-p">In many workplace teams, quieter voices can be overlooked in group discussions, especially where seniority, language confidence or unfamiliarity with the group affects participation. This module focuses on a specific and actionable skill: using inclusive communication to actively invite overlooked perspectives while reducing the dominance of those who naturally take up more space in a conversation.</p>
+      <h2 class="about-h" style="margin-top:1.5rem">Key concepts</h2>
+      <div class="concept-grid">
+        <div class="concept-card"><h4>Psychological safety</h4><p>The shared belief that a team is safe for interpersonal risk-taking, including speaking up, disagreeing, or offering an idea that might be wrong.</p></div>
+        <div class="concept-card"><h4>Intersectionality</h4><p>The way multiple aspects of identity and circumstance combine to create compounding advantages or barriers. Being junior, new, and a non-native speaker multiplies barriers beyond any single factor.</p></div>
+        <div class="concept-card"><h4>Inclusive facilitation</h4><p>Structured approaches to meetings and discussions that create equal opportunity for contribution regardless of personality, culture, or seniority.</p></div>
+        <div class="concept-card"><h4>SMEAC</h4><p>A structured briefing format: Situation, Mission, Execution, Admin and Logistics, Command and Signals. Used here to present realistic and complete workplace scenarios.</p></div>
+      </div>
+      <h2 class="about-h">Connection to MQBS2010</h2>
+      <p class="about-p">This module draws on Week 10 (finding common ground and unique contributions in teams), Week 11 (diversity, inclusion, intersectionality, and psychological safety with guest speaker Dr Raymond Trau), and Week 12 (global citizenship and the visible and invisible dimensions of difference people carry into every interaction). The Driving Stars role play from Week 11 tutorials directly practised bringing together people with different expertise to solve a shared problem. This module extends that practice into a self-directed format.</p>
+      <div class="facilitator-box">
+        <h4>Facilitator notes: running this in 10-15 minutes</h4>
+        <div class="fac-row"><span class="fac-time">2 min</span><p>Introduce the module. Explain the SMEAC format and the learning outcome. Ask participants to work individually or in pairs.</p></div>
+        <div class="fac-row"><span class="fac-time">8-10 min</span><p>Participants complete the five scenarios and the written practice exercise independently. Encourage them to say the practice phrases aloud after each feedback screen.</p></div>
+        <div class="fac-row"><span class="fac-time">3 min</span><p>Group debrief using the three questions on the results screen. Ask which scenario felt most realistic and which strategy participants would apply in their own team.</p></div>
+      </div>
+      <div class="debrief-box">
+        <h4>Debrief questions</h4>
+        <div class="debrief-q"><div class="debrief-n">1</div><span>Whose voice was most at risk of being missed in today's scenarios, and why?</span></div>
+        <div class="debrief-q"><div class="debrief-n">2</div><span>Which facilitation strategy would you feel most confident using in a real workplace meeting?</span></div>
+        <div class="debrief-q"><div class="debrief-n">3</div><span>How does inclusive communication improve a team's ability to solve problems effectively?</span></div>
+      </div>
+      <div class="refs-box">
+        <h4>References</h4>
+        <p class="ref-item">Edmondson, A. (1999). Psychological safety and learning behavior in work teams. <em>Administrative Science Quarterly, 44</em>(2), 350-383. <a href="https://doi.org/10.2307/2666999" target="_blank">https://doi.org/10.2307/2666999</a></p>
+        <p class="ref-item">Fyhn, B., Egeland, T., &amp; Schei, V. (2025). Time is not enough: Exploring the processes that shape team psychological safety. <em>Journal of Business and Psychology.</em> <a href="https://doi.org/10.1007/s10869-025-10078-9" target="_blank">https://doi.org/10.1007/s10869-025-10078-9</a></p>
+        <p class="ref-item">V, K., Varde, Y., &amp; Shalini, P. (2025). Managerial influence on employee psychological safety in high-performance teams. <em>Lex Localis: Journal of Local Self-Government, 23</em>(S6), 5413-5425. <a href="https://doi.org/10.52152/hqt0pq76" target="_blank">https://doi.org/10.52152/hqt0pq76</a></p>
+        <p class="ref-item">van Luttervelt, M. P., Lund, C. S., &amp; Kjeldsen, A. M. (2025). Dispersion of distributed leadership in public organizations: Can inclusive leadership contribute to diverse employee engagement in leadership activities? <em>Public Performance &amp; Management Review, 48</em>(5), 1053-1083. <a href="https://doi.org/10.1080/15309576.2025.2507294" target="_blank">https://doi.org/10.1080/15309576.2025.2507294</a></p>
+        <p class="refs-note">This module also draws on MQBS2010 Week 11 and Week 12 learning on diversity, inclusion, psychological safety, intersectionality, global citizenship, and diverse team engagement.</p>
+      </div>
+      <button class="btn-primary" onclick="startQuiz()">Start the module &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== QUIZ ===== -->
+<div class="page" id="page-quiz">
+  <div class="container">
+    <div class="quiz-inner">
+      <div class="progress-row">
+        <span class="prog-label" id="prog-label">Question 1 of 5</span>
+        <span class="prog-score" id="prog-score">0 correct</span>
+      </div>
+      <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+      <div id="quiz-content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PRACTICE PAGE ===== -->
+<div class="page" id="page-practice">
+  <div class="container">
+    <div class="practice-inner">
+      <p class="practice-eyebrow">Skill practice</p>
+      <h2 class="practice-h">Construct your own response</h2>
+      <p class="practice-sub">You have identified the most inclusive response in five scenarios. Now practise producing one yourself. Choose a situation below, then write the exact phrase you would say in a real workplace meeting to redirect the conversation inclusively.</p>
+
+      <p style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-bottom:0.75rem">Choose a situation to practise</p>
+      <div class="prac-cards" id="prac-cards">
+
+        <div class="prac-card selected" id="prac-card-0" onclick="selectPracScenario(0)">
+          <div class="prac-card-num">1</div>
+          <div class="prac-card-body">
+            <div class="prac-card-title">Interrupted speaker</div>
+            <p class="prac-card-desc">Priya begins sharing an idea but is cut off mid-sentence by Jordan. The group moves on and Priya goes quiet.</p>
+          </div>
+          <div class="prac-card-check" id="prac-check-0">&#10003;</div>
+        </div>
+
+        <div class="prac-card" id="prac-card-1" onclick="selectPracScenario(1)">
+          <div class="prac-card-num">2</div>
+          <div class="prac-card-body">
+            <div class="prac-card-title">Never-invited speaker</div>
+            <p class="prac-card-desc">Alex is facilitating a project update meeting. Jordan and Sam have given detailed updates, but Priya has not been invited to contribute before the team moves to priorities.</p>
+          </div>
+          <div class="prac-card-check" id="prac-check-1">&#10003;</div>
+        </div>
+
+        <div class="prac-card" id="prac-card-2" onclick="selectPracScenario(2)">
+          <div class="prac-card-num">3</div>
+          <div class="prac-card-body">
+            <div class="prac-card-title">Dominant senior voices</div>
+            <p class="prac-card-desc">In a financial services ideation meeting, two senior staff have spoken for most of the time. Three junior members have not contributed, and the facilitator wants to reset the discussion.</p>
+          </div>
+          <div class="prac-card-check" id="prac-check-2">&#10003;</div>
+        </div>
+
+      </div>
+
+      <div class="practice-prompt-box" style="margin-top:1.5rem">
+        <label for="practice-input" id="practice-label">Type the exact phrase you would say in this situation to redirect the conversation inclusively:</label>
+        <textarea class="practice-textarea" id="practice-input" placeholder="Write your response here..."></textarea>
+        <div class="practice-actions">
+          <button class="btn-primary" onclick="showModel()">Show model response</button>
+          <button class="btn-ghost" onclick="clearPractice()">Clear</button>
+        </div>
+        <div class="model-reveal" id="model-reveal">
+          <div class="model-box">
+            <div class="model-label">Model response</div>
+            <p id="model-text"></p>
+            <p class="model-note" id="model-note"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="practice-next-row">
+        <button class="btn-primary" onclick="showResults()">See my results &#8594;</button>
+        <span class="practice-note">Your written response is for your own reflection only and is not scored.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RESULTS ===== -->
+<div class="page" id="page-results">
+  <div class="container">
+    <div class="res-inner">
+      <div class="score-hero">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--maroon)">Module complete</p>
+        <h2 style="font-family:'Fraunces',serif;font-size:28px;font-weight:300;color:var(--navy);margin:0.5rem 0">Well done for completing the module.</h2>
+        <div class="score-ring">
+          <span class="score-n" id="final-score">0/5</span>
+          <span class="score-s">correct</span>
+        </div>
+        <p class="score-msg" id="score-msg"></p>
+      </div>
+      <div class="divider"></div>
+      <p class="section-label">Key takeaways</p>
+      <div class="insight">Exclusion in team discussions is usually unconscious, not intentional. Developing the habit of noticing who has spoken and who has not is the foundation of inclusive facilitation.</div>
+      <div class="insight">In-the-moment intervention is more effective than post-meeting repair. Redirecting back to an overlooked speaker restores their voice when it matters most and models inclusive norms for the whole group.</div>
+      <div class="insight">Intersectionality shapes who feels safe to speak. A person who is junior, new, and navigating a second language faces compounding barriers that are invisible to teammates who do not share those experiences.</div>
+      <div class="insight">Structural strategies such as direct named invitation and structured round-robins remove the burden of self-advocacy and create a norm where every voice is expected, not just permitted.</div>
+      <div class="divider"></div>
+      <div class="try-it-box">
+        <div class="try-it-label">Try it now</div>
+        <p>Pick one strategy from the checklist below. Turn to the person next to you and practise saying the invitation phrase out loud. For example: "Before we move on, I have not heard from you yet. What are your thoughts?"</p>
+      </div>
+      <p class="section-label">In your next team meeting</p>
+      <div class="checklist">
+        <div class="checklist-head">Try this in your next team meeting</div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span>Notice who has not spoken and make a point of inviting them by name</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span>Invite input directly and respectfully, without putting anyone on the spot</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span>Return to speakers who were interrupted and give them back the floor</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span>Use a structured round before opening discussion to equalise participation</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span>Do not place the burden of inclusion on quieter members; make it a facilitation responsibility</span></div>
+      </div>
+      <div class="debrief-card">
+        <h4>Debrief questions for your group</h4>
+        <div class="debrief-q"><div class="debrief-n">1</div><span>Whose voice was most at risk of being missed in today's scenarios, and why?</span></div>
+        <div class="debrief-q"><div class="debrief-n">2</div><span>Which facilitation strategy would you feel most confident using in a real workplace meeting?</span></div>
+        <div class="debrief-q"><div class="debrief-n">3</div><span>How does inclusive communication improve a team's ability to solve problems effectively?</span></div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn-primary" onclick="goTo('page-home')">&#8592; Back to home</button>
+        <button class="btn-ghost" onclick="restartQuiz()">&#8617; Try again</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bar">MQBS2010 Assessment 3 Training Activity &middot; Macquarie Business School &middot; 2026 &middot; Xuanhe Zhang, Mahijanen Mahinthan, Pavithran Thushiyendra, Aidan Thomson</div>
+</div>
+
+<script>
+var questions = [
+  {
+    num:"Scenario 1 of 5",
+    scene:[
+      {name:"Alex",bub:"OK Jordan, what did you come up with?",cls:"s-active",fill:"#7F77DD",fill2:"#AFA9EC"},
+      {name:"Jordan",bub:"Sure, my idea is...",cls:"s-active",fill:"#185FA5",fill2:"#378ADD"},
+      {name:"Sam",bub:"Building on that...",cls:"s-active",fill:"#1D9E75",fill2:"#5DCAA5"},
+      {name:"Priya",bub:"(not asked)",cls:"s-excluded",fill:"#8b6655",fill2:"#a07060",fade:true}
+    ],
+    smeac:{
+      S:"A four-person consulting team at a Sydney firm is holding a weekly project update meeting. All members were briefed to come prepared and are expected to contribute equally.",
+      M:"The team lead, <span class='ca'>Alex</span>, will facilitate the meeting, collect updates from each member, and agree on priorities for the coming week.",
+      E:"<span class='ca'>Alex</span> asks <span class='cj'>Jordan</span> for their update. Jordan speaks for three minutes. Alex then asks <span class='cs'>Sam</span>, who speaks for two minutes. Alex says: 'I think we have what we need. Let us move to priorities.' <span class='cp'>Priya</span> has been present throughout but has not been asked to contribute at any point.",
+      A:"Meeting held in a shared office space. No formal agenda was distributed. All members are present in person.",
+      C:"Alex holds facilitation responsibility. Members speak when invited. There is no process for flagging if someone has been missed."
+    },
+    q:"What is the most significant inclusion failure in this scenario?",
+    opts:[
+      "Jordan and Sam spoke for too long and should have been managed by the facilitator.",
+      "Alex failed to invite Priya to contribute, creating a pattern of unconscious exclusion.",
+      "The team should have circulated a written agenda before the meeting.",
+      "Priya should have spoken up without waiting to be invited."
+    ],
+    ans:1,
+    why:"Alex's failure to invite Priya is the core inclusion failure. Priya's silence is not a sign of disengagement. Without a structured process, team members who are less likely to self-advocate are systematically excluded, even when no one intends it.",
+    principle:"Inclusion is a facilitation responsibility, not a personal one. It is the facilitator's role to create equal opportunity for contribution.",
+    takeaway:"As a team lead or facilitator, actively track who has and has not contributed. Invite by name rather than opening the floor and hoping quieter members will step in.",
+    practice:"Practise saying: 'Before we move to priorities, I want to make sure we hear from everyone. Priya, what is your update?'"
+  },
+  {
+    num:"Scenario 2 of 5",
+    scene:[
+      {name:"Priya",bub:"I was thinking we could...",cls:"s-excluded",fill:"#8b6655",fill2:"#a07060"},
+      {name:"Jordan",bub:"Yeah what we should do is...",cls:"s-active",fill:"#185FA5",fill2:"#378ADD"},
+      {name:"Alex",bub:"Great idea Jordan!",cls:"s-active",fill:"#7F77DD",fill2:"#AFA9EC"},
+      {name:"Sam",bub:"(listening)",cls:"s-silent",fill:"#1D9E75",fill2:"#5DCAA5"}
+    ],
+    smeac:{
+      S:"A six-person cross-functional team is in a brainstorming session on a new client onboarding process. <span class='cp'>Priya</span> joined the team two weeks ago and is more confident in written than spoken English.",
+      M:"The session aims to generate at least five viable process improvement ideas. All team members are expected to contribute.",
+      E:"<span class='cp'>Priya</span> begins: 'I was thinking we could approach the onboarding from the client's perspective first, and then...' <span class='cj'>Jordan</span> cuts across: 'Yeah, what I think we should actually do is automate the intake form.' The group immediately engages with Jordan's idea. Priya does not speak again.",
+      A:"Session runs for 45 minutes in a shared meeting room. No designated note-taker. No agreed speaking order.",
+      C:"No designated facilitator. Any team member can intervene to support inclusive participation."
+    },
+    q:"Which response from a team member would most effectively support Priya?",
+    opts:[
+      "Say nothing during the meeting and privately raise the interruption with Jordan afterwards.",
+      "Pause the conversation and say: 'Before we move on, Priya was mid-thought. Priya, can you finish what you were saying?'",
+      "After the meeting, send a message to the full team asking everyone to submit their ideas in writing.",
+      "Suggest that the team adopt a no-interrupting rule at the start of the next meeting."
+    ],
+    ans:1,
+    why:"In-the-moment redirection restores Priya's voice at the exact point of exclusion. It signals to the whole group that all contributions are valued and models inclusive behaviour without singling anyone out for blame.",
+    principle:"Intervening in the moment is more powerful than post-meeting repair. The longer an exclusion goes unaddressed, the less likely the person is to re-engage.",
+    takeaway:"Any team member can redirect a conversation back to an interrupted speaker. You do not need to be the facilitator. One sentence is enough.",
+    practice:"Practise saying: 'Before we move on, Priya was mid-thought. Priya, can you finish what you were saying?'"
+  },
+  {
+    num:"Scenario 3 of 5",
+    scene:[
+      {name:"Member A",bub:"As I was saying...",cls:"s-active",fill:"#7F77DD",fill2:"#AFA9EC"},
+      {name:"Member B",bub:"Exactly, and also...",cls:"s-active",fill:"#185FA5",fill2:"#378ADD"},
+      {name:"New",bub:"(joined 2 weeks ago)",cls:"s-silent",fill:"#8b6655",fill2:"#a07060",fade:true},
+      {name:"ESL",bub:"(2nd language)",cls:"s-silent",fill:"#8b6655",fill2:"#a07060",fade:true},
+      {name:"Junior",bub:"(first year)",cls:"s-silent",fill:"#8b6655",fill2:"#a07060",fade:true}
+    ],
+    smeac:{
+      S:"A student project team of five is in their third weekly meeting. The team is diverse in cultural background, seniority, and language proficiency. Two members consistently lead discussion. Three others, including one who joined late, one less confident speaking English in group settings, and one in their first year of the program, tend to remain quiet.",
+      M:"The team needs to finalise their project direction and assign tasks before the end of the meeting.",
+      E:"The two dominant members have proposed a direction and begun assigning tasks without consulting the three quieter members. The dominant members are not intending to exclude anyone and believe the meeting is productive.",
+      A:"Meeting held online. No formal facilitator. No agreed structure for decision-making or turn-taking.",
+      C:"All members are nominally equal. No mechanism exists for quieter members to signal they want to contribute."
+    },
+    q:"Which concept best explains why the three quieter members face compounding barriers to speaking up?",
+    opts:[
+      "Groupthink: the team has converged on a direction and social pressure prevents dissent.",
+      "Intersectionality: overlapping aspects of identity and circumstance create stacked and multiplied barriers to participation.",
+      "Introversion: some people naturally prefer to listen rather than speak in group settings.",
+      "Role ambiguity: the team has not clearly defined who is responsible for decisions."
+    ],
+    ans:1,
+    why:"Each barrier, being new, navigating a second language, and occupying a junior position, is a challenge on its own. For someone facing all three at once, the compounding effect makes self-advocacy significantly harder. This is often invisible to teammates who do not share those experiences.",
+    principle:"Intersectionality, discussed in Week 11, explains why diverse teams need structural inclusion strategies rather than relying on individuals to raise their own voices.",
+    takeaway:"Do not assume quieter team members are disengaged. Consider what invisible barriers they might be navigating and use structured strategies to remove the burden of self-advocacy.",
+    practice:"Practise saying: 'I want to pause before we finalise this. We have not heard from everyone yet, so let us do a quick round.'"
+  },
+  {
+    num:"Scenario 4 of 5",
+    scene:[
+      {name:"Senior 1",bub:"I think we should...",cls:"s-active",fill:"#8b1a2e",fill2:"#c25a6e"},
+      {name:"Senior 2",bub:"Agreed, and further...",cls:"s-active",fill:"#7F77DD",fill2:"#AFA9EC"},
+      {name:"Junior A",bub:"...",cls:"s-silent",fill:"#8b6655",fill2:"#a07060",fade:true},
+      {name:"Sam (fac.)",bub:"OK, who wants to start?",cls:"s-active",fill:"#1D9E75",fill2:"#5DCAA5"}
+    ],
+    smeac:{
+      S:"A team of six professionals in a financial services firm is holding a 20-minute ideation meeting. The team includes both senior and junior staff. In previous meetings, three junior members have rarely contributed despite attending.",
+      M:"<span class='cs'>Sam</span>, a mid-level team member, has been asked to facilitate. The goal is to generate ideas for improving client communication and to hear from as many team members as possible.",
+      E:"Sam opens the floor: 'OK, who wants to start?' The two most senior members immediately begin sharing. After ten minutes, only they have spoken. Sam is aware junior members have not contributed but is unsure how to intervene without disrupting the flow.",
+      A:"Meeting held in a boardroom with a shared screen. Sam has limited facilitation experience.",
+      C:"Sam holds facilitation responsibility. Senior members have informally set the conversational norm by speaking first and at length."
+    },
+    q:"Which facilitation strategy should Sam use to ensure all team members contribute before the meeting ends?",
+    opts:[
+      "Continue with open discussion and trust that quieter members will speak when ready.",
+      "Ask the most senior member to summarise what they believe the whole team thinks.",
+      "Introduce a structured round: invite each person to share one idea in 60 to 90 seconds before opening to general discussion.",
+      "Pause and ask junior members directly whether they agree with what has been said so far."
+    ],
+    ans:2,
+    why:"A structured round before open discussion removes the need for junior staff to self-advocate into a conversation already dominated by senior voices. It creates a clear and equal expectation that everyone will contribute and prevents earlier ideas from anchoring the discussion.",
+    principle:"Open floors favour those already comfortable speaking. Structured rounds level the field before conversational norms become entrenched.",
+    takeaway:"Introduce a structured round at any point in a meeting. Saying 'let us just go around quickly' is enough to create a moment of equal participation.",
+    practice:"Practise saying: 'Let us do a structured round. Each person share one idea in 60 seconds before we open the discussion.'"
+  },
+  {
+    num:"Scenario 5 of 5",
+    scene:[
+      {name:"Morgan",bub:"How should I start?",cls:"s-active",fill:"#5c3b8a",fill2:"#9b72cf"},
+      {name:"Team AU",bub:"(first meeting)",cls:"s-silent",fill:"#185FA5",fill2:"#378ADD",fade:true},
+      {name:"Team VN",bub:"(first meeting)",cls:"s-silent",fill:"#1D9E75",fill2:"#5DCAA5",fade:true},
+      {name:"Team BR",bub:"(first meeting)",cls:"s-silent",fill:"#8b1a2e",fill2:"#c25a6e",fade:true}
+    ],
+    smeac:{
+      S:"A newly formed cross-cultural team of five is preparing for their first major project meeting. Members are from Australia, Vietnam, Brazil, and the United Kingdom. The team leader, <span class='cm'>Morgan</span>, has been briefed that previous teams in this organisation have struggled with unequal participation across cultural and seniority lines.",
+      M:"Morgan wants to establish a meeting norm from the first session that makes it genuinely safe for all members to contribute, regardless of communication style or seniority.",
+      E:"Morgan is planning the opening five minutes of the meeting and must decide which inclusive facilitation practice to implement immediately, before any conversational patterns become established.",
+      A:"Meeting held online. All members joining from different locations. Morgan has 45 minutes total. The team has not worked together before.",
+      C:"Morgan holds facilitation responsibility. No standard meeting protocol exists in the organisation."
+    },
+    q:"Which single action should Morgan take at the start of the meeting to most effectively build a foundation for inclusive participation?",
+    opts:[
+      "Ask all team members to introduce themselves and share one professional achievement to establish credibility.",
+      "Use direct named invitation in the first discussion round, calling on each person by name before open discussion begins.",
+      "Establish a no-interrupting rule and ask the team to agree to it at the start.",
+      "Encourage team members to use the chat function so quieter members have an alternative channel."
+    ],
+    ans:1,
+    why:"Direct named invitation immediately signals that every person's contribution is expected, not optional. It removes the need for self-advocacy before any participant has assessed whether the group is safe to speak in. Early facilitation behaviour is the strongest predictor of whether quieter members will continue to contribute throughout a project.",
+    principle:"The norms established in the first meeting tend to persist. Setting an inclusive norm from the outset is far more effective than trying to correct an exclusive pattern later.",
+    takeaway:"Start every new team or project meeting with a named round. One contribution per person is enough to establish the norm that every voice belongs in the room.",
+    practice:"Practise saying: 'I will invite each person by name first, then we can move into open discussion.'"
+  }
+];
+
+var cur = 0;
+var score = 0;
+var answered = false;
+var quizActive = false;
+
+function goTo(id) {
+  var pages = document.querySelectorAll('.page');
+  for (var i = 0; i < pages.length; i++) {
+    pages[i].classList.remove('active');
+  }
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+  var tabs = document.querySelectorAll('.nav-tab');
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove('active-tab');
+  }
+  if (id === 'page-home') tabs[0].classList.add('active-tab');
+  if (id === 'page-about') tabs[1].classList.add('active-tab');
+  if (id === 'page-quiz' || id === 'page-practice') tabs[2].classList.add('active-tab');
+}
+
+function startQuiz() {
+  cur = 0;
+  score = 0;
+  answered = false;
+  quizActive = true;
+  goTo('page-quiz');
+  renderQ();
+}
+
+function restartQuiz() {
+  startQuiz();
+}
+
+function personSVG(p) {
+  var op = p.fade ? '0.32' : '1';
+  return '<svg width="44" height="66" viewBox="0 0 44 66" fill="none" opacity="' + op + '">' +
+    '<circle cx="22" cy="13" r="10" fill="' + p.fill + '"/>' +
+    '<rect x="9" y="25" width="26" height="30" rx="5" fill="' + p.fill2 + '"/>' +
+    '<rect x="2" y="27" width="8" height="19" rx="4" fill="' + p.fill2 + '"/>' +
+    '<rect x="34" y="27" width="8" height="19" rx="4" fill="' + p.fill2 + '"/>' +
+    '<rect x="10" y="52" width="8" height="10" rx="3" fill="' + p.fill2 + '"/>' +
+    '<rect x="26" y="52" width="8" height="10" rx="3" fill="' + p.fill2 + '"/>' +
+    '<circle cx="17.5" cy="10" r="1.7" fill="white" opacity="' + (p.fade ? '0.4':'1') + '"/>' +
+    '<circle cx="26.5" cy="10" r="1.7" fill="white" opacity="' + (p.fade ? '0.4':'1') + '"/>' +
+    '<path d="M17 17 Q22 21 27 17" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="' + (p.fade ? '0.2':'1') + '"/>' +
+    '</svg>';
+}
+
+function renderSMEAC(s) {
+  var labs = {S:'Situation', M:'Mission', E:'Execution', A:'Admin and Logistics', C:'Command and Signals'};
+  var keys = ['S','M','E','A','C'];
+  var html = '';
+  for (var i = 0; i < keys.length; i++) {
+    var k = keys[i];
+    html += '<div class="smeac-row-item">' +
+      '<div class="smeac-k"><span class="sl">' + k + '</span>' + labs[k] + '</div>' +
+      '<div class="smeac-v">' + s[k] + '</div>' +
+      '</div>';
+  }
+  return html;
+}
+
+function renderScene(people) {
+  var html = '';
+  for (var i = 0; i < people.length; i++) {
+    var p = people[i];
+    html += '<div class="scene-person">' +
+      '<div class="s-bub ' + p.cls + '">' + p.bub + '</div>' +
+      personSVG(p) +
+      '<span class="s-name">' + p.name + '</span>' +
+      '</div>';
+  }
+  return html;
+}
+
+function renderQ() {
+  if (!quizActive) return;
+  answered = false;
+  var q = questions[cur];
+  var pct = (cur / questions.length) * 100;
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-label').textContent = 'Question ' + (cur + 1) + ' of ' + questions.length;
+  document.getElementById('prog-score').textContent = score + ' correct';
+
+  var optsHTML = '';
+  for (var i = 0; i < q.opts.length; i++) {
+    optsHTML += '<button class="opt" onclick="pick(' + i + ')" id="opt-' + i + '">' +
+      '<span class="opt-l">' + String.fromCharCode(65 + i) + '</span>' + q.opts[i] +
+      '</button>';
+  }
+
+  document.getElementById('quiz-content').innerHTML =
+    '<div class="scene-card">' +
+      '<div class="scene-top">' +
+        '<span class="scene-badge">Team scenario</span>' +
+        '<span class="scene-num">' + q.num + '</span>' +
+      '</div>' +
+      '<div class="scene-figures">' + renderScene(q.scene) + '</div>' +
+    '</div>' +
+    '<div class="smeac-box">' +
+      '<div class="smeac-head">SMEAC Scenario Brief <span>Situation &middot; Mission &middot; Execution &middot; Admin &middot; Command</span></div>' +
+      renderSMEAC(q.smeac) +
+    '</div>' +
+    '<p class="q-text">' + q.q + '</p>' +
+    '<div class="opts">' + optsHTML + '</div>' +
+    '<div id="fb-area"></div>';
+}
+
+function pick(idx) {
+  if (answered) return;
+  answered = true;
+  var q = questions[cur];
+  var ok = idx === q.ans;
+  if (ok) score++;
+
+  for (var i = 0; i < q.opts.length; i++) {
+    var b = document.getElementById('opt-' + i);
+    b.disabled = true;
+    if (i === q.ans) b.classList.add('correct');
+    if (i === idx && !ok) b.classList.add('wrong');
+  }
+
+  var isLast = cur === questions.length - 1;
+  var nextLabel = isLast ? 'Continue to practice exercise &#8594;' : 'Next question &#8594;';
+
+  document.getElementById('fb-area').innerHTML =
+    '<div class="fb-card">' +
+      '<div class="fb-header ' + (ok ? 'fb-ok-h' : 'fb-no-h') + '">' +
+        (ok ? '&#10003; Correct' : '&#10005; Not quite') +
+      '</div>' +
+      '<div class="fb-body">' +
+        '<div class="fb-row"><div class="fb-row-label">Why this matters</div><p>' + q.why + '</p></div>' +
+        '<div class="fb-row"><div class="fb-row-label">Inclusive facilitation principle</div><p>' + q.principle + '</p></div>' +
+        '<div class="fb-row"><div class="fb-row-label">Workplace takeaway</div><p>' + q.takeaway + '</p></div>' +
+        '<div class="practice-prompt">' +
+          '<div class="practice-prompt-label">Practice prompt</div>' +
+          '<p>' + q.practice + '</p>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+    '<button class="next-btn" onclick="nextQ()">' + nextLabel + '</button>';
+
+  document.getElementById('prog-score').textContent = score + ' correct';
+}
+
+function nextQ() {
+  cur++;
+  if (cur >= questions.length) {
+    document.getElementById('prog-fill').style.width = '100%';
+    goTo('page-practice');
+    selectedPracScenario = 0;
+    for (var j = 0; j < 3; j++) {
+      document.getElementById('prac-card-' + j).classList.remove('selected');
+    }
+    document.getElementById('prac-card-0').classList.add('selected');
+    document.getElementById('practice-input').value = '';
+    document.getElementById('model-reveal').classList.remove('shown');
+  } else {
+    renderQ();
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+}
+
+var pracScenarios = [
+  {
+    model: '"Priya, I think Jordan cut across you there. Could you finish what you were saying? I would like to hear your full idea before we move on."',
+    note: 'This is one example. Any response that pauses the conversation, names Priya directly, and returns the floor to her demonstrates inclusive communication. There is no single correct phrasing.'
+  },
+  {
+    model: '"Before we move to priorities, I want to make sure we hear from everyone. Priya, what is your update?"',
+    note: 'This is one example. Any response that pauses before moving on and directly invites Priya by name demonstrates inclusive facilitation. Phrasing may vary.'
+  },
+  {
+    model: '"Let\'s pause and do a quick structured round. I would like each person to share one idea before we continue the open discussion."',
+    note: 'This is one example. Any response that introduces a structured turn-taking process and explicitly invites all members to contribute demonstrates inclusive facilitation. Phrasing may vary.'
+  }
+];
+var selectedPracScenario = 0;
+
+function selectPracScenario(idx) {
+  selectedPracScenario = idx;
+  for (var i = 0; i < 3; i++) {
+    document.getElementById('prac-card-' + i).classList.remove('selected');
+  }
+  document.getElementById('prac-card-' + idx).classList.add('selected');
+  document.getElementById('practice-input').value = '';
+  document.getElementById('model-reveal').classList.remove('shown');
+}
+
+function showModel() {
+  var sc = pracScenarios[selectedPracScenario];
+  document.getElementById('model-text').textContent = sc.model;
+  document.getElementById('model-note').textContent = sc.note;
+  document.getElementById('model-reveal').classList.add('shown');
+  document.getElementById('model-reveal').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function clearPractice() {
+  document.getElementById('practice-input').value = '';
+  document.getElementById('model-reveal').classList.remove('shown');
+}
+
+function showResults() {
+  goTo('page-results');
+  document.getElementById('final-score').textContent = score + '/5';
+  var msgs = [
+    "Review the key takeaways below and try the module again to build your fluency with these strategies.",
+    "A solid start. The insights and checklist below will help you apply these strategies in practice.",
+    "Good work. You are developing strong inclusive team facilitation skills.",
+    "Great result. You have a well-developed eye for exclusion and how to address it.",
+    "Full marks. You are ready to facilitate genuinely inclusive team discussions."
+  ];
+  document.getElementById('score-msg').textContent = msgs[score] || msgs[4];
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+}
+</script>
+</body>
+</html>
